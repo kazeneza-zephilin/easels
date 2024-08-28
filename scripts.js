@@ -1,8 +1,11 @@
+useRandomColor = false;
+
 document.addEventListener("DOMContentLoaded", (event) => {
   const rangeInput = document.querySelector("#rangeInput");
   const rangeValue = document.querySelector("#rangeValue");
   const container = document.querySelector(".container");
   const canva = document.createElement("div");
+  const rainbowBtn = document.querySelector("#rainbow");
 
   canva.style.cssText =
     "width:320px ;height:320px; display:flex; flex-wrap:wrap; justify-content: center; align-item:center; margin: 100px auto";
@@ -38,6 +41,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
   rangeInput.addEventListener("input", handleInputChange);
 
   function changeBackgroundColor(elem) {
-    elem.style.backgroundColor = "black";
+    elem.style.backgroundColor = getColor();
   }
+  function generateRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  function getColor() {
+    return useRandomColor ? generateRandomColor() : "black";
+  }
+  rainbowBtn.addEventListener("click", (e) => {
+    e.target.style.backgroundColor = 'yellow'
+    e.target.style.color = 'black'
+    useRandomColor = !useRandomColor;
+  }, true);
 });
