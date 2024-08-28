@@ -1,4 +1,5 @@
-useRandomColor = false;
+let useRandomColor = false;
+let useClick = false;
 
 document.addEventListener("DOMContentLoaded", (event) => {
   const rangeInput = document.querySelector("#rangeInput");
@@ -6,6 +7,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
   const container = document.querySelector(".container");
   const canva = document.createElement("div");
   const rainbowBtn = document.querySelector("#rainbow");
+  const resetBtn = document.querySelector("#reset");
+  const clickBtn = document.querySelector("#click");
 
   canva.style.cssText =
     "width:320px ;height:320px; display:flex; flex-wrap:wrap; justify-content: center; align-item:center; margin: 100px auto";
@@ -24,9 +27,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const squares = document.querySelectorAll(".square");
     squares.forEach((square) => {
-      square.addEventListener("mouseover", (event) => {
-        changeBackgroundColor(square);
-      });
+      square.addEventListener("mouseover", handleSquareEvent);
+      square.addEventListener("mousedown", handleSquareEvent);
     });
   }
 
@@ -56,8 +58,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
     return useRandomColor ? generateRandomColor() : "black";
   }
   rainbowBtn.addEventListener("click", (e) => {
-    e.target.style.backgroundColor = 'yellow'
     e.target.style.color = 'black'
     useRandomColor = !useRandomColor;
-  }, true);
+  });
+  resetBtn.addEventListener('click', (e) => {
+    location.reload();
+  })
+  function getEventListener(){
+    return useClick? "": "mouseover";
+  }
+  clickBtn.addEventListener('mousedown', () => {
+    useClick = !useClick; 
+  });
+
+  function handleSquareEvent(event){
+    if (useClick && event.type === 'mousedown'){
+      changeBackgroundColor(event.target);
+    }else if (!useClick && event.type === 'mouseover'){
+      changeBackgroundColor(event.target);
+    }
+  }
 });
