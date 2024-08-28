@@ -1,0 +1,19 @@
+*{
+    background-color: antiquewhite;
+}
+h1{
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.btns{
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+}
+button {
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+}

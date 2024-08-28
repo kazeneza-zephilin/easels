@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     for (let i = 0; i < size * size; i++) {
       const pixel = document.createElement("div");
-      pixel.style.cssText = `background-color: yellow; width:${pixelSize}px; height:${pixelSize}px`;
+      pixel.style.cssText = `background-color: white; width:${pixelSize}px; height:${pixelSize}px`;
       pixel.classList.add("square");
       canva.appendChild(pixel);
     }
@@ -38,6 +38,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
   rangeInput.addEventListener("input", handleInputChange);
 
   function changeBackgroundColor(elem) {
-    elem.style.backgroundColor = "red";
+    elem.style.backgroundColor = "black";
   }
 });
